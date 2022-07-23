@@ -29,6 +29,7 @@ def createDefaultFile(configFilePath=None):
 
 def getConfiguration(configFilePath=None):
     configFile = configFilePath
+    vmiDir = None
     if configFile is None:
         home = Path.home()
         vmiDir = home / '.vmi'
@@ -37,6 +38,7 @@ def getConfiguration(configFilePath=None):
             vmiDir.mkdir(parents=True, exist_ok=True)
     else:
         configFile = Path(configFilePath)
+        vmiDir = configFile.parents[0]
 
     if configFile.is_file() is False:
         return createDefaultFile(configFilePath=configFilePath), vmiDir
